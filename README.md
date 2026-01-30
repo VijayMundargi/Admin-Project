@@ -39,7 +39,7 @@ Create a file named .env in the root directory and add:
 
 PORT=5000  
 MONGO_URI=mongodb://localhost:27017/mern_admin  
-JWT_SECRET=your_secret_key  
+JWT_SECREAT_KEY=your_secret_key  
 
 4. Run the Server
 
@@ -47,6 +47,20 @@ npm start
 
 Server will run at:  
 http://localhost:5000
+
+--------------------------------------------------
+## 🔑 JWT Implementation
+
+- JWT tokens are generated on successful login
+- Tokens include user identity and expiration time
+- Tokens are validated using a secret key
+- Expired or invalid tokens are rejected automatically
+
+Security Components Used:
+- JwtAuthenticationFilter
+- JwtUtil / JwtService
+- Spring Security Filter Chain
+
 
 --------------------------------------------------
 
