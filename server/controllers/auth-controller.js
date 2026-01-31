@@ -11,9 +11,6 @@ const register = async(req,res) => {
          return  res.status(409).json({msg:"Email alredy in use"})
         }
 
-      
-    
-
       const userCreted = await User.create({username,email,phone,password})
       res.status(201).json({msg:"Registration successful!", token: await userCreted.generateToken(), userId:userCreted._id.toString()})
     } catch (error) {
@@ -30,7 +27,7 @@ const login = async(req,res) => {
        if(!userExists){
         res.status(401).json({msg:"Invalid Credentials"})
        }
-       const user = await bcrypt.compare(password, userExists.password);
+       const user = await userExists.comparePassword(password);
 
        if(user){
         res.status(200).json({
